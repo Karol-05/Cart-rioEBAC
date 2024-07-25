@@ -1,25 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <string.h>
+#include <stdio.h> //biblioteca de comunicação com o usuário
+#include <stdlib.h> //biblioteca de alocação de espaço em memória
+#include <locale.h> //biblioteca de alocação de texto por região
+#include <string.h> // biblioteca responsável por cuidar da string
 
-int registro()
+int registro() //função responsável por cadastrar os usuários no sistema
 {
+	//inicio criação de variáveis/string
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
 	char arquivo[40];
+	//final da criação de variáveis/string
 	
-	printf("Digite o CPF a ser cadastrado:  ");
-	scanf("%s", cpf);
+	printf("Digite o CPF a ser cadastrado:  "); //coletando informação do usuário
+	scanf("%s", cpf); //%s refere-se a string
 	
-	strcpy(arquivo, cpf);
+	strcpy(arquivo, cpf); //responsável por copiar os valores das string
 	
-	FILE *file;
-	file = fopen(arquivo, "w");
-	fprintf(file,cpf);
-	fclose(file);
+	FILE *file; //cria o arquivo
+	file = fopen(arquivo, "w"); //criar o arquivo e o "w" significa escrever
+	fprintf(file,cpf); //salvo o valor da variavel
+	fclose(file); //fecha o arquivo
 	
 	file = fopen(arquivo, "a");
 	fprintf(file,",");
@@ -112,7 +114,7 @@ int deletar ()
  
 int main()
 {
-    int opcao=0;
+    int opcao=0; //definindo variáveis
     int laco=1;
 
     for(laco=1;laco=1;)
@@ -120,23 +122,24 @@ int main()
 
         system("cls");
 
-        setlocale(LC_ALL, "Portuguese");
+        setlocale(LC_ALL, "Portuguese"); //definindo linguagem
 
-        printf("### Cartório da EBAC ### \n\n");
-        printf("Escolha a opção desejada do menu\n");
+        printf("### Cartório da EBAC ### \n\n"); //inicio do menu
+        printf("Escolha a opção desejada do menu\n\n");
         printf("\t1 - Registrar nomes\n");
         printf("\t2 - Consultar nomes\n");
         printf("\t3 - Deletar nomes\n\n");
+        printf("\t4 - Sair do sistema\n\n");
         printf("Opção: ");
 
-        scanf("%d", &opcao);
+        scanf("%d", &opcao); //armazenando a escolha do usuário
 
-        system("cls");
+        system("cls"); //responsável por limbar a tela
 
-        switch(opcao)
+        switch(opcao) //inicio da seleçção do menu
         {
             case 1:
-            registro();
+            registro(); //chamada de funções
             break;
 
             case 2:
@@ -146,11 +149,16 @@ int main()
             case 3: 
             deletar();
             break;
+            
+            case 4:
+            printf("Obrigado por utilizar o sistema!\n");
+            return 0;
+            break;
 
             default:
-            printf("essa opção não está disponível!\n");
+            printf("Essa opção não está disponível!\n");
             system("pause");
             break;
-        }
+        } //fim da seleção
     }
 }
